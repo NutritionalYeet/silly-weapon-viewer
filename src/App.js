@@ -2,6 +2,7 @@ import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from "react";
 
+//
 const dbUrl = `/chat_app/fetch_weapons.php`; 
 
 const fetchWeapons = async (url) => {
@@ -38,7 +39,7 @@ function App() {
 
     getItems();
 
-  },[]);
+  },[dbUrl]); // Only updates if the url changes
 
   return (
     <div className="App">
