@@ -96,7 +96,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div id="mainRow">
-          <div id="weapon-selector">
+          <div class="weapon-selector border-window">
             
             <div>
                 <h1>Weapons List</h1>
@@ -112,7 +112,7 @@ function App() {
 
             {
               currentWeapon ? 
-              <div id ="weapon-info-grid">
+              <div class ="weapon-info-grid border-window">
                 <h1>{currentWeapon.name}</h1>
 
                 <div class = "stat-column-container">

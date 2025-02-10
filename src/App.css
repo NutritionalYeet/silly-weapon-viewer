@@ -29,23 +29,27 @@
 }
 
 
-#weapon-selector {
+.weapon-selector {
   padding: 1em;
   display: flex;
   color: var(--text-color);
   background-color: black;
   flex: 0 0 10em;
   text-align: left;
+
+}
+
+.border-window
+{
   border-image-source: url("../assets/9sliceweaponbrowser.png");
   
   border-image-slice: 53;
   border-image-repeat: stretch;
   border-image-width: 13px;
   border-style: solid; 
-
 }
 
-#weapon-info-grid
+.weapon-info-grid
 {
   background-color: black;
   padding: 1em;
@@ -55,13 +59,6 @@
   flex-direction: column;
   text-align: left;
 
-
-  border-image-source: url("../assets/9sliceweaponbrowser.png");
-  
-  border-image-slice: 53;
-  border-image-repeat: stretch;
-  border-image-width: 13px;
-  border-style: solid; 
 }
 
 .stat-row
