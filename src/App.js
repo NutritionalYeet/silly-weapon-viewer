@@ -5,6 +5,20 @@ import { useEffect, useState } from "react";
 //
 const dbUrl = `/chat_app/fetch_weapons.php`; 
 
+class Weapon
+{
+  constructor(id,n,d)
+  {
+    this.id = id
+    this.name = n;
+    this.description = d;
+  }
+}
+
+let weapons = [];
+
+let currentWeapon = null;
+
 const fetchWeapons = async (url) => {
   try
   {
@@ -16,7 +30,14 @@ const fetchWeapons = async (url) => {
       }
 
     const data = await response.json();
-    return Array.isArray(data.weapons) ? data.weapons : [];
+
+    const weapons = Array.isArray(data.weapons) 
+      ? data.weapons.map(weapon => new Weapon(weapon.id, weapon.name,weapon.description))
+      : [];
+
+    currentWeapon = weapons.length > 0? weapons[0] : null;
+
+    return weapons;
   }
   catch(error)
   {
@@ -28,6 +49,11 @@ const fetchWeapons = async (url) => {
 function App() {
 
   const [items,setItems] = useState([]);
+
+  //updating the current weapon
+  const stateArray = useState(null);
+  const currentWeapon = stateArray[0];
+  const assignCurrentWeapon = stateArray[1];
 
 
   useEffect(()=>{
@@ -46,21 +72,26 @@ function App() {
       <header className="App-header">
         <div id="mainRow">
           <div id="weapon-selector">
+            
             <div>
                 <h1>Weapons List</h1>
                 <ul>
                   {items.map((item) =>(
-                    <li key = {item.id}><button>{item.name}</button></li>
+                    <li key = {item.id}><button onClick={() => assignCurrentWeapon(item)}>{item.name}</button></li>
                   ))}
                 </ul>
               </div>
           </div>
           <div id="content">
-            <img src={logo} className="App-logo" alt="logo" />
-            
+
             <div>
-                <h1>Title Here</h1>
+                <h1>{currentWeapon.name}</h1>
             </div>
+            {
+              currentWeapon ? <p>{currentWeapon.description}</p> : <img src={logo} className="App-logo" alt="logo" />
+            }
+            
+
 
             <p>
               Edit <code>src/App.js</code> and save to reload.
