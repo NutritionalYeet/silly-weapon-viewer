@@ -12,7 +12,7 @@
   --quality-superior: rgb(199,199,0);
   --quality-rare: rgb(248,176,0);
   --quality-special: rgb(255,48,6);
-  --quality-extreme: rgb(211,47,242);
+  --quality-extreme: (211,47,242);
 }
 
 [data-theme="dark"] {
@@ -46,6 +46,18 @@
   flex: 0 0 10em;
   text-align: left;
 
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  padding-left: 30px; /* Adjust for icon spacing */
+  background-image: url("../src/test_weapon_icon.jpg");
+  background-size: 20px 20px; /* Resize image */
+  background-repeat: no-repeat;
+  background-position: left center;
 }
 
 .border-window

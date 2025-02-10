@@ -3,8 +3,12 @@ import './App.css';
 import { useEffect, useState } from "react";
 import { color } from 'three/tsl';
 
+import weaponIcon from '../src/test_weapon_icon.jpg';
+
 //
 const dbUrl = `/chat_app/fetch_weapons.php`; 
+
+
 
 
 class Weapon
@@ -138,6 +142,8 @@ function App() {
             {
               currentWeapon ? 
               <div className ="weapon-info-grid border-window">
+
+                <img src={weaponIcon}></img>
                 <h1 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.name}</h1>
                 <h2 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.quality}</h2>
 
