@@ -84,11 +84,16 @@ function App() {
           </div>
           <div id="content">
 
-            <div>
-                <h1>{currentWeapon ? currentWeapon.name : "Uh"}</h1>
-            </div>
+
+
+
             {
-              currentWeapon ? <p>{currentWeapon.description}</p> : <img src={logo} className="App-logo" alt="logo" />
+              currentWeapon ? 
+              <div id ="weapon-info-grid">
+                <h1>{currentWeapon.name}</h1>
+                <p>{currentWeapon.description}</p> 
+              </div>
+                : <img src={logo} className="App-logo" alt="logo" />
             }
             
 
