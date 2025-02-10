@@ -85,7 +85,7 @@ function App() {
           <div id="content">
 
             <div>
-                <h1>{currentWeapon.name}</h1>
+                <h1>{currentWeapon ? currentWeapon.name : "Uh"}</h1>
             </div>
             {
               currentWeapon ? <p>{currentWeapon.description}</p> : <img src={logo} className="App-logo" alt="logo" />
