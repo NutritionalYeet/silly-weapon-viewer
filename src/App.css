@@ -4,6 +4,15 @@
   --secondary-color: #76807C;
   --accent-color: #63718C;
   --text-color: #b1c4de;
+
+  --quality-debug: rgb(96,64,75);
+  --quality-cheap: rgb(66,66,66);
+  --quality-ok: rgb(116,167,255);
+  --quality-good: rgb(131,214,74);
+  --quality-superior: rgb(199,199,0);
+  --quality-rare: rgb(248,176,0);
+  --quality-special: rgb(255,48,6);
+  --quality-extreme: rgb(211,47,242);
 }
 
 [data-theme="dark"] {

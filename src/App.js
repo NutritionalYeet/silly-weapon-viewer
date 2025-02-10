@@ -1,6 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import { useEffect, useState } from "react";
+import { color } from 'three/tsl';
 
 //
 const dbUrl = `/chat_app/fetch_weapons.php`; 
@@ -80,6 +81,30 @@ function App() {
   const currentWeapon = stateArray[0];
   const assignCurrentWeapon = stateArray[1];
 
+  const getWeaponColor = (quality) => 
+    {
+      switch (quality) {
+        case "debug":
+          return "var(--quality-debug)";
+        case "cheap":
+          return "var(--quality-cheap)";
+        case "ok":
+          return "var(--quality-ok)";
+        case "good":
+          return "var(--quality-good)";
+        case "superior":
+          return "var(--quality-superior)";
+        case "rare":
+          return "var(--quality-rare)";
+        case "special":
+          return "var(--quality-special)";
+        case "extreme":
+          return "var(--quality-extreme)";
+        default:
+          return "var(--primary-color)";
+    }
+  };
+
 
   useEffect(()=>{
     const getItems = async () =>
@@ -96,7 +121,7 @@ function App() {
     <div className="App">
       <header className="App-header">
         <div id="mainRow">
-          <div class="weapon-selector border-window">
+          <div className = "weapon-selector border-window">
             
             <div>
                 <h1>Weapons List</h1>
@@ -112,73 +137,73 @@ function App() {
 
             {
               currentWeapon ? 
-              <div class ="weapon-info-grid border-window">
-                <h1>{currentWeapon.name}</h1>
-                <h2>{currentWeapon.quality}</h2>
+              <div className ="weapon-info-grid border-window">
+                <h1 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.name}</h1>
+                <h2 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.quality}</h2>
 
-                <div class = "stat-column-container">
-                  <div class = "stat-column">
-                    <div class = "stat-row">
-                      <p class = "stat-label">id</p><p class ="stat">{currentWeapon.id}</p>
+                <div className = "stat-column-container">
+                  <div className = "stat-column">
+                    <div className = "stat-row">
+                      <p className = "stat-label">id</p><p className ="stat">{currentWeapon.id}</p>
                       
                     </div>
-                    <div class = "stat-row">
-                      <p class = "stat-label">level</p><p class ="stat">{currentWeapon.sl}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">level</p><p className ="stat">{currentWeapon.sl}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">stamina</p><p class ="stat">{currentWeapon.stamina}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">stamina</p><p className ="stat">{currentWeapon.stamina}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">speed</p><p class ="stat">{currentWeapon.speed}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">speed</p><p className ="stat">{currentWeapon.speed}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">melee dmg</p><p class ="stat">{currentWeapon.melee_damage}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">melee dmg</p><p className ="stat">{currentWeapon.melee_damage}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">spell dmg</p><p class ="stat">{currentWeapon.spell_damage}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">spell dmg</p><p className ="stat">{currentWeapon.spell_damage}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">gouge</p><p class ="stat">{currentWeapon.gouge}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">gouge</p><p className ="stat">{currentWeapon.gouge}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">guard</p><p class ="stat">{currentWeapon.guard}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">guard</p><p className ="stat">{currentWeapon.guard}</p>
                     </div>
                   </div>
 
-                  <div class = "stat-column">
+                  <div className = "stat-column">
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">price</p><p class ="stat">{currentWeapon.price}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">price</p><p className ="stat">{currentWeapon.price}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">nerve</p><p class ="stat">{currentWeapon.nerve}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">nerve</p><p className ="stat">{currentWeapon.nerve}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">charge</p><p class ="stat">{currentWeapon.charge}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">charge</p><p className ="stat">{currentWeapon.charge}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">ranged dmg</p><p class ="stat">{currentWeapon.ranged_damage}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">ranged dmg</p><p className ="stat">{currentWeapon.ranged_damage}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">healing</p><p class ="stat">{currentWeapon.healing}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">healing</p><p className ="stat">{currentWeapon.healing}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">resilience</p><p class ="stat">{currentWeapon.resilience}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">resilience</p><p className ="stat">{currentWeapon.resilience}</p>
                     </div>
 
-                    <div class = "stat-row">
-                      <p class = "stat-label">dominance</p><p class ="stat">{currentWeapon.dominance}</p>
+                    <div className = "stat-row">
+                      <p className = "stat-label">dominance</p><p className ="stat">{currentWeapon.dominance}</p>
                     </div>
                   </div>
                 </div>
