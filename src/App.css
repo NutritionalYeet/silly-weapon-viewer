@@ -29,15 +29,19 @@
 }
 
 
-#weapon-selector
-{
+#weapon-selector {
   padding: 1em;
   display: flex;
-  color:  var(--text-color);
+  color: var(--text-color);
   background-color: black;
   flex: 0 0 10em;
   text-align: left;
-
+  border-image-source: url("../assets/9sliceweaponbrowser.png"); /* No quotes */
+  
+  border-image-slice: 53;  /* Adjust this value */
+  border-image-repeat: round;
+  border-image-width: 13px;
+  border-style: solid;  /* Required for border image to appear */
 
 }
 
