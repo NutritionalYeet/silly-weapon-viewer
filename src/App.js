@@ -114,6 +114,7 @@ function App() {
               currentWeapon ? 
               <div class ="weapon-info-grid border-window">
                 <h1>{currentWeapon.name}</h1>
+                <h2>{currentWeapon.quality}</h2>
 
                 <div class = "stat-column-container">
                   <div class = "stat-column">
@@ -151,9 +152,6 @@ function App() {
                   </div>
 
                   <div class = "stat-column">
-                    <div class = "stat-row">
-                      <p class = "stat-label">quality</p><p class ="stat">{currentWeapon.quality}</p>
-                    </div>
 
                     <div class = "stat-row">
                       <p class = "stat-label">price</p><p class ="stat">{currentWeapon.price}</p>
