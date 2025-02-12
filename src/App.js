@@ -147,7 +147,6 @@ function App() {
               <div className ="weapon-info-grid border-window">
 
                 <img src={currentWeapon.getIconPath()}></img>
-                <p>{currentWeapon.getIconPath}</p>
                 <h1 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.name}</h1>
                 <h2 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.quality}</h2>
 
