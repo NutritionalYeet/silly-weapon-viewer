@@ -3,9 +3,6 @@ import './App.css';
 import { useEffect, useState } from "react";
 import { color } from 'three/tsl';
 
-import weaponIcon from '../src/test_weapon_icon.jpg';
-
-//
 const dbUrl = `/chat_app/fetch_weapons.php`; 
 
 
@@ -13,13 +10,14 @@ const dbUrl = `/chat_app/fetch_weapons.php`;
 
 class Weapon
 {
-  constructor(id,name,description, quality, sl, price, stamina,
+  constructor(id,name,icon_file_path,description, quality, sl, price, stamina,
     nerve, speed, charge, melee_damage, ranged_damage, spell_damage,
     healing, gouge, resilience, guard, dominance
   )
   {
     this.id = id
     this.name = name;
+    this.icon_file_path = icon_file_path;
     this.description = description;
     this.quality = quality;
     this.sl = sl;
@@ -38,6 +36,11 @@ class Weapon
     this.guard = guard; 
     this.dominance = dominance;
   }
+
+  getIconPath()
+    {
+      return `/assets/icons/${this.icon_file_path}`
+    }
 }
 
 let weapons = [];
@@ -58,7 +61,7 @@ const fetchWeapons = async (url) => {
 
     const weapons = Array.isArray(data.weapons) 
       ? data.weapons.map(weapon => 
-        new Weapon(weapon.id, weapon.name, weapon.description, weapon.quality,
+        new Weapon(weapon.id, weapon.name, weapon.icon_file_path, weapon.description, weapon.quality,
           weapon.sl, weapon.price, weapon.stamina, weapon.nerve, weapon.speed, weapon.charge,
           weapon.melee_damage, weapon.ranged_damage, weapon.spell_damage, weapon.healing, weapon.gouge,
           weapon.resilience, weapon.guard,weapon.dominance
@@ -143,7 +146,8 @@ function App() {
               currentWeapon ? 
               <div className ="weapon-info-grid border-window">
 
-                <img src={weaponIcon}></img>
+                <img src={currentWeapon.getIconPath()}></img>
+                <p>{currentWeapon.getIconPath}</p>
                 <h1 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.name}</h1>
                 <h2 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.quality}</h2>
 

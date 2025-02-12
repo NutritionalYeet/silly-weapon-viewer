@@ -54,8 +54,8 @@ ul {
 
 li {
   padding-left: 30px; /* Adjust for icon spacing */
-  background-image: url("../src/test_weapon_icon.jpg");
-  background-size: 20px 20px; /* Resize image */
+  /* background-image: url("../src/inv_weapon_knife_0.jpg"); */
+  background-size: 2em 2em; /* Resize image */
   background-repeat: no-repeat;
   background-position: left center;
 }
@@ -66,7 +66,7 @@ li {
   
   border-image-slice: 53;
   border-image-repeat: stretch;
-  border-image-width: 13px;
+  border-image-width: .3em;
   border-style: solid; 
 }
 
