@@ -39,10 +39,33 @@ body {
   --text-color: #f0f0f0
 }
 
-.list-item
+
+#mainRow
+{
+  align-items: flex-start;  
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  
+}
+
+#content
 {
   display: flex;
+  flex-direction: column;
+}
+
+.item-description
+{
+  min-height: 70px;
+  color:burlywood;
+}
+
+.list-item {
+  width: 100%; /* Ensure it takes the full width */
+  display: flex;
   flex-direction: row;
+  
 }
 
 .list-item-icon
@@ -51,29 +74,30 @@ body {
   width: auto;
 }
 
-#mainRow
-{
-  display: flex;
-  justify-content: space-between;
-  width: 80%;
+.weapons-list {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  line-height: 40px;
+  
 }
-
-#content
-{
-  display: flex;
-  flex-direction: column;
-
-}
-
 
 .weapon-selector {
-  padding: 1em;
+  padding:5px;
+  min-width: 10em;
+  max-width: 20%;
   display: flex;
+  flex-direction: column;
   color: var(--text-color);
   background-color: black;
-  flex: 0 0 10em;
   text-align: left;
+}
 
+li button {
+  width: 100%; 
+  text-align: left; 
+  border: none;
+  padding: 0;
 }
 
 ul {
@@ -81,11 +105,15 @@ ul {
 }
 
 li {
-  padding-left: 30px; /* Adjust for icon spacing */
+  border-width: 3px !important;
+
+    width: 100%; /* Ensure each list item stretches fully */
+
+  /* padding-left: 30px; Adjust for icon spacing */
   /* background-image: url("../src/inv_weapon_knife_0.jpg"); */
-  background-size: 2em 2em; /* Resize image */
-  background-repeat: no-repeat;
-  background-position: left center;
+  /* background-size: 2em 2em; Resize image */
+  /* background-repeat: no-repeat; */
+  /* background-position: left center; */
 }
 
 .border-window
@@ -103,12 +131,14 @@ li {
 
 .weapon-info-grid
 {
+  min-width: 23em;
   width:200em;
-  border-radius: 2em;
+  border-radius: 5em;
   background-color: black;
   padding: 1em;
+  margin-left:1em;
   max-width: 20em;
-  font-size: .75em;
+  font-size: .70em;
   display: flex;
   flex-direction: column;
   text-align: left;

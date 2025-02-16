@@ -142,13 +142,13 @@ function App() {
         <div id="mainRow">
           <div className = "weapon-selector border-window">
             
-            <div>
+
                 <h1>Weapons List</h1>
-                <ul>
+                <ul className = "weapons-list">
                   {items.map((item) =>(
-                    <li key = {item.id}><button onClick={() => assignCurrentWeapon(item)}>
+                    <li className = "" key = {item.id}><button className = "border-window"  onClick={() => assignCurrentWeapon(item)}>
                       <div className = "list-item">
-                        <img className = "list-item-icon" src={item.getIconPath()} alt="Weapon icon"></img>
+                        <img className = "list-item-icon border-window" src={item.getIconPath()} alt="Weapon icon"></img>
                         <p className = "list-item-name">{item.name}</p>
                       </div>
                       
@@ -156,7 +156,6 @@ function App() {
                     </li>
                   ))}
                 </ul>
-              </div>
           </div>
           <div id="content">
 
@@ -241,7 +240,7 @@ function App() {
                   </div>
                 </div>
 
-                <p>"{currentWeapon.description}"</p> 
+                <p className="item-description">"{currentWeapon.description}"</p> 
               </div>
                 : <img src={logo} className="App-logo" alt="logo" />
             }
