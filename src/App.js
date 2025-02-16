@@ -146,8 +146,18 @@ function App() {
               currentWeapon ?
               <div className ="weapon-info-grid">
 
-                <img className="border-window item-image" src={currentWeapon.getIconPath()}></img>
-                <h1 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.name}</h1>
+                
+
+                <div className="item-header">
+                  {/* <div className="stat-column-container"> */}
+                    <h1 className="item-title" style={{ color: getWeaponColor(currentWeapon.quality) }}>
+                      {currentWeapon.name}
+                    </h1>
+                  {/* </div> */}
+                  {/* <div className="stat-column-container"> */}
+                    <img className="border-window item-image" src={currentWeapon.getIconPath()} alt="Weapon icon" />
+                  {/* </div> */}
+                </div>
                 {/* <h2 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.quality}</h2> */}
 
                 <div className = "stat-column-container">
@@ -188,7 +198,7 @@ function App() {
                   <div className = "stat-column">
 
                     <div className = "stat-row">
-                      <p className = "stat-label">price</p><p className ="stat">{currentWeapon.price}</p>
+                      <p className = "stat-label">price</p><p className ="stat">$ {currentWeapon.price}</p>
                     </div>
 
                     <div className = "stat-row">

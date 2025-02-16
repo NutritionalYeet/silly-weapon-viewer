@@ -12,7 +12,18 @@
   --quality-superior: rgb(199,199,0);
   --quality-rare: rgb(248,176,0);
   --quality-special: rgb(255,48,6);
-  --quality-extreme: (211,47,242);
+  --quality-extreme: rgb(211,47,242);
+}
+
+@font-face {
+  font-family: 'Friz Quadrata';
+  src: url('./assets/fonts/FrizQuadrata-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: 'Friz Quadrata', sans-serif;
 }
 
 [data-theme="dark"] {
@@ -85,6 +96,13 @@ li {
 
 }
 
+.item-header
+{
+  display: flex;
+  flex-direction: row;
+  align-items: first baseline;
+}
+
 .stat-row
 {
   justify-content: space-between;
@@ -102,12 +120,7 @@ li {
   padding-left: 1em;
 }
 
-.stat-column-container
-{
-  justify-content: space-between;
-  display: flex;
-  flex-direction: row;
-}
+
 
 
 .App {
@@ -125,10 +138,29 @@ li {
   }
 }
 
+.stat-column-container
+{
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+}
+
+.item-title {
+  height: 100%;
+  display: flex;
+  padding-right: .5em;
+  text-align: left;
+  
+  /* align-self: baseline; */
+ /* align-self: flex-end;  Moves the element to the bottom */
+ /* margin-top: auto; Pushes it down if there's space */
+}
 .item-image
 {
-  height: 17em;
-  width: 17em;
+  /* margin-bottom: auto; */
+  height: 5em;
+  width: auto;
+
 }
 
 .App-header {
