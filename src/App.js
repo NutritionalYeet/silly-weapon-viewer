@@ -143,12 +143,12 @@ function App() {
 
 
             {
-              currentWeapon ? 
-              <div className ="weapon-info-grid border-window">
+              currentWeapon ?
+              <div className ="weapon-info-grid">
 
-                <img src={currentWeapon.getIconPath()}></img>
+                <img className="border-window item-image" src={currentWeapon.getIconPath()}></img>
                 <h1 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.name}</h1>
-                <h2 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.quality}</h2>
+                {/* <h2 style = {{ color : getWeaponColor(currentWeapon.quality)}}>{currentWeapon.quality}</h2> */}
 
                 <div className = "stat-column-container">
                   <div className = "stat-column">

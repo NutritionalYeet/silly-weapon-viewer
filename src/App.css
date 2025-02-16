@@ -62,12 +62,15 @@ li {
 
 .border-window
 {
+  border: .5em solid transparent;
   border-image-source: url("../assets/9sliceweaponbrowser.png");
   
   border-image-slice: 53;
   border-image-repeat: stretch;
-  border-image-width: .3em;
-  border-style: solid; 
+  /* border-image-width: .5em; */
+  border-style:outset; 
+
+
 }
 
 .weapon-info-grid
@@ -120,6 +123,12 @@ li {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
+}
+
+.item-image
+{
+  height: 17em;
+  width: 17em;
 }
 
 .App-header {
