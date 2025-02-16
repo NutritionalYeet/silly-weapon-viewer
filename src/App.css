@@ -13,6 +13,10 @@
   --quality-rare: rgb(248,176,0);
   --quality-special: rgb(255,48,6);
   --quality-extreme: rgb(211,47,242);
+
+  --stat-zero: rgb(94, 94, 94);
+  --stat-negative: rgb(142, 27, 27);
+  --stat-positive: rgb(79, 175, 156);
 }
 
 @font-face {
@@ -26,12 +30,25 @@ body {
   font-family: 'Friz Quadrata', sans-serif;
 }
 
+
 [data-theme="dark"] {
   --background-color: #0A0A0F;
   --primary-color: #C81E1E;
   --secondary-color: #4B4F52;
   --accent-color: #5A3D70;
   --text-color: #f0f0f0
+}
+
+.list-item
+{
+  display: flex;
+  flex-direction: row;
+}
+
+.list-item-icon
+{
+  height:5em;
+  width: auto;
 }
 
 #mainRow
@@ -86,6 +103,8 @@ li {
 
 .weapon-info-grid
 {
+  width:200em;
+  border-radius: 2em;
   background-color: black;
   padding: 1em;
   max-width: 20em;
@@ -112,12 +131,13 @@ li {
 
 .stat-label
 {
-  font-weight: bolder;
+  font-weight:100;
 }
 
 .stat
 {
   padding-left: 1em;
+  font-weight: 400;
 }
 
 
@@ -143,24 +163,25 @@ li {
   justify-content: space-between;
   display: flex;
   flex-direction: row;
+  padding: .5em;
+  gap: 2.5em;
 }
 
 .item-title {
   height: 100%;
   display: flex;
-  padding-right: .5em;
+  padding-left: .5em;
   text-align: left;
-  
+  align-self: center;
   /* align-self: baseline; */
- /* align-self: flex-end;  Moves the element to the bottom */
- /* margin-top: auto; Pushes it down if there's space */
+  margin-bottom: auto;
 }
 .item-image
 {
-  /* margin-bottom: auto; */
   height: 5em;
   width: auto;
-
+  /* align-self: baseline; */
+  /* margin-top: auto; */
 }
 
 .App-header {
