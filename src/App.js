@@ -41,7 +41,7 @@ class Weapon
 
   getIconPath()
     {
-      return `/assets/icons/${this.icon_file_path}`
+      return `/assets/icons/${(this.icon_file_path !== "" && this.icon_file_path != null) ? this.icon_file_path : "misc_icn.jpg"}`
     }
 }
 
@@ -248,8 +248,13 @@ function App() {
                     </div>
                   </div>
 
-                  <p className="item-description">"{currentWeapon.description}"</p> 
+                  <i><p className="item-description">"{currentWeapon.description}"</p></i>
 
+                  {(currentWeapon.use_text !== "" && currentWeapon.use_text !== null) &&(
+                        <p className="item-use-text">Use: {currentWeapon.use_text}</p>
+                  )}
+                 
+                  
                 </div>
                   : <img src={logo} className="App-logo" alt="logo" />
               }

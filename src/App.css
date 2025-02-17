@@ -70,8 +70,8 @@ body {
 .item-description
 {
   line-height: 105%;
-  margin-top: 3em;
-  min-height: 70px;
+  margin-top: 2em;
+  min-height: 17px;
   color:burlywood;
   font-weight: 100;
 }
@@ -131,14 +131,20 @@ h1
   width: 100%;
   padding: 0;
   margin: 0;
-  line-height: 40px;
+  /* line-height: 40px; */
+  line-height: 20px;
 
   overflow: scroll;
   
 }
 
+.item-use-text
+{
+  color:limegreen;
+}
+
 .weapon-selector {
-  padding:5px;
+  /* padding:5px; */
   min-width: 10em;
   max-width: 20%;
   display: flex;
@@ -148,8 +154,11 @@ h1
   text-align: left;
 
   border-radius: .25em;
-  padding: .5em;
+  /* padding: .5em; */
+  padding: .2em;
+  
 
+  backdrop-filter: blur(10px);
   -webkit-box-reflect: below 5px radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, transparent 100%);
 }
 
@@ -189,7 +198,8 @@ li {
 
 .border-window
 {
-  border: 7px solid transparent;
+  /* border: 7px solid transparent; */
+  border: 9px solid transparent;
   border-image-source: url("../assets/9sliceweaponbrowser.png");
   
   border-image-slice: 53;
