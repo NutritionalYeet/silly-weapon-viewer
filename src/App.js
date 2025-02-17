@@ -146,10 +146,10 @@ function App() {
                 <h1>Weapons List</h1>
                 <ul className = "weapons-list">
                   {items.map((item) =>(
-                    <li className = "" key = {item.id}><button className = "border-window"  onClick={() => assignCurrentWeapon(item)}>
-                      <div className = "list-item">
-                        <img className = "list-item-icon border-window" src={item.getIconPath()} alt="Weapon icon"></img>
-                        <p className = "list-item-name">{item.name}</p>
+                    <li className = "" key = {item.id}><button className = "border-window" style={{ color: getWeaponColor(item.quality) }} onClick={() => assignCurrentWeapon(item)}>
+                      <div className = "list-item" >
+                        <img className = "list-item-icon border-window"  src={item.getIconPath()} alt="Weapon icon" ></img>
+                        <p className = "list-item-name" >{item.name}</p>
                       </div>
                       
                       </button>

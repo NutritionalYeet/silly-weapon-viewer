@@ -61,17 +61,38 @@ body {
   color:burlywood;
 }
 
+.list-item-name
+{
+  padding-left: 1em;
+  text-align: left;
+  align-self: center;
+  width:100%;
+  font-size: 16px;
+
+  
+
+}
+
 .list-item {
   width: 100%; /* Ensure it takes the full width */
   display: flex;
   flex-direction: row;
+  background-color: rgb(66,66,66);
+  font-family: 'Friz Quadrata', sans-serif;
+
+  justify-content: space-between;
+
   
 }
 
 .list-item-icon
 {
+
   height:5em;
   width: auto;
+  border-left: none !important;
+  border-top: none !important;
+  border-bottom: none !important;
 }
 
 .weapons-list {
