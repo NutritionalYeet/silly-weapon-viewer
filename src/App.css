@@ -24,6 +24,7 @@ hr{
   width: 100%;
   border-width: .5px;
   border-style: solid;
+  border-color: rgba(255, 255, 255, 0.217);
 }
 
 @font-face {
@@ -72,6 +73,7 @@ body {
   margin-top: 3em;
   min-height: 70px;
   color:burlywood;
+  font-weight: 100;
 }
 
 .list-item-name
@@ -131,7 +133,7 @@ h1
   margin: 0;
   line-height: 40px;
 
-  
+  overflow: scroll;
   
 }
 
@@ -157,19 +159,20 @@ li button {
   background: none;
   padding: 0;
 }
-
+/*rgb(43, 37, 25);*/
 .list-item:hover
 {
-  background-color:rgb(57, 49, 34);
-  transition: var(--background-color);
-  transition-duration: 0.15s;
+  background: radial-gradient(circle, rgb(43, 37, 25) 60%, black 100%);
+  transition: background-color 0.15s ease-in-out;
 }
 
 .list-item:active
 {
-  background-color:rgb(84, 77, 71);
+  background: radial-gradient(circle, rgb(58, 54, 49) 60%, black 100%);
+  transition: background-color 0.1s ease-in-out;
+  /* background-color:rgb(66, 61, 56);
   transition: var(--background-color);
-  transition-duration: 0.1s;
+  transition-duration: 0.1s; */
 
 }
 
@@ -228,7 +231,6 @@ li {
   display: flex;
   flex-direction: row;
   max-height:25px;
-
 }
 
 .stat-label
@@ -241,8 +243,6 @@ li {
   padding-left: 1em;
   font-weight: 400;
 }
-
-
 
 
 .App {

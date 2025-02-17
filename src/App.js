@@ -12,7 +12,7 @@ class Weapon
 {
   constructor(id,name,icon_file_path,description, quality, sl, price, stamina,
     nerve, speed, charge, melee_damage, ranged_damage, spell_damage,
-    healing, gouge, resilience, guard, dominance
+    healing, gouge, resilience, guard, dominance, use_text
   )
   {
     this.id = id
@@ -35,6 +35,8 @@ class Weapon
     this.resilience = resilience;
     this.guard = guard; 
     this.dominance = dominance;
+
+    this.use_text = use_text;
   }
 
   getIconPath()
@@ -64,7 +66,7 @@ const fetchWeapons = async (url) => {
         new Weapon(weapon.id, weapon.name, weapon.icon_file_path, weapon.description, weapon.quality,
           weapon.sl, weapon.price, weapon.stamina, weapon.nerve, weapon.speed, weapon.charge,
           weapon.melee_damage, weapon.ranged_damage, weapon.spell_damage, weapon.healing, weapon.gouge,
-          weapon.resilience, weapon.guard,weapon.dominance
+          weapon.resilience, weapon.guard,weapon.dominance, weapon.use_text
         ))
       : [];
 
@@ -247,6 +249,7 @@ function App() {
                   </div>
 
                   <p className="item-description">"{currentWeapon.description}"</p> 
+
                 </div>
                   : <img src={logo} className="App-logo" alt="logo" />
               }
