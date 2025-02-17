@@ -210,21 +210,28 @@ li {
 
 }
 
-.weapon-info-grid
+.weapon-info-window
 {
+  display: flex;
   max-height:650px;
-  min-width: 23em;
-  width:200em;
-  border-radius: 1em;
   background-color: rgba(0, 0, 0, 0.413);
+  border-radius: 1em;
   padding: 1em;
   margin-left:1em;
+  -webkit-box-reflect: below 5px radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, transparent 100%);
+
+  
+}
+
+.weapon-info-grid
+{
+  
+  min-width: 23em;
   max-width: 20em;
   font-size: .70em;
   display: flex;
   flex-direction: column;
   text-align: left;
-  -webkit-box-reflect: below 5px radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, transparent 100%);
 
 }
 
@@ -266,7 +273,9 @@ li {
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    /* animation: App-logo-spin infinite 20s linear; */
+    animation: App-logo-spin infinite 2s alternate-reverse;
+    animation: App-logo-float infinite 3s alternate-reverse;
   }
 }
 
@@ -326,11 +335,27 @@ li {
   color: var(--primary-color);
 }
 
-@keyframes App-logo-spin {
+@keyframes App-logo-float {
   from {
-    transform: rotate(0deg);
+    transform:translateY(0);
+    /* transform: rotate(0deg); */
+    /* transform: rotate(-3deg); */
   }
   to {
-    transform: rotate(360deg);
+    transform:translateY(13px);
+    /* transform: rotate(360deg); */
+    /* transform: rotate(3deg); */
   }
 }
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(-3deg);
+  }
+  to {
+    transform: rotate(3deg);
+  }
+}
+
+
+
