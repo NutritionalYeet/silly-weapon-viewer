@@ -140,116 +140,122 @@ function App() {
     <div className="App">
       <header className="App-header">
 
-      <h1>Weapon Viewer</h1>
-        <div id="mainRow">
-          <div className = "weapon-selector">
-            
+      <div className="main">
 
-                {/* <h2>Weapons List</h2> */}
-                <ul className = "weapons-list">
-                  {items.map((item) =>(
-                    <li className = "" key = {item.id}><button className = "border-window" style={{ color: getWeaponColor(item.quality) }} onClick={() => assignCurrentWeapon(item)}>
-                      <div className = "list-item" >
-                        <img className = "list-item-icon border-window"  src={item.getIconPath()} alt="Weapon icon" ></img>
-                        <p className = "list-item-name" >{item.name}</p>
+        <h1>Weapon Viewer</h1>
+          <div id="mainRow">
+            <div className = "weapon-selector">
+              
+
+                  {/* <h2>Weapons List</h2> */}
+                  <ul className = "weapons-list">
+                    {items.map((item) =>(
+                      <li className = "" key = {item.id}><button className = "border-window" style={{ color: getWeaponColor(item.quality) }} onClick={() => assignCurrentWeapon(item)}>
+                        <div className = "list-item" >
+                          <img className = "list-item-icon border-window"  src={item.getIconPath()} alt="Weapon icon" ></img>
+                          <p className = "list-item-name" >{item.name}</p>
+                        </div>
+                        
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+            </div>
+            <div id="content">
+
+
+              {
+                currentWeapon ?
+                <div className ="weapon-info-grid">
+
+                  
+
+                  <div className="item-header">
+                  <img className="border-window item-image" src={currentWeapon.getIconPath()} alt="Weapon icon" />
+                      <h2 className="item-title" style={{ color: getWeaponColor(currentWeapon.quality) }}>
+                        {currentWeapon.name}
+                      </h2>
+                  </div>
+
+                  <div className = "stat-column-container">
+                    <div className = "stat-column">
+                      <div className = "stat-row">
+                        <p className = "stat-label">id</p><p className ="stat">{currentWeapon.id}</p>
                       </div>
-                      
-                      </button>
-                    </li>
-                  ))}
-                </ul>
-          </div>
-          <div id="content">
+                      <hr/>
+                      <div className = "stat-row">
+                        <p className = "stat-label">level</p><p className ="stat">{currentWeapon.sl}</p>
+                      </div>
 
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.stamina) }}>
+                        <p className = "stat-label">stamina</p><p className ="stat">{currentWeapon.stamina}</p>
+                      </div>
 
-            {
-              currentWeapon ?
-              <div className ="weapon-info-grid">
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.speed) }}>
+                        <p className = "stat-label">speed</p><p className ="stat">{currentWeapon.speed}</p>
+                      </div>
 
-                
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.melee_damage) }}>
+                        <p className = "stat-label">melee dmg</p><p className ="stat">{currentWeapon.melee_damage}</p>
+                      </div>
 
-                <div className="item-header">
-                <img className="border-window item-image" src={currentWeapon.getIconPath()} alt="Weapon icon" />
-                    <h2 className="item-title" style={{ color: getWeaponColor(currentWeapon.quality) }}>
-                      {currentWeapon.name}
-                    </h2>
-                </div>
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.spell_damage) }}>
+                        <p className = "stat-label">spell dmg</p><p className ="stat">{currentWeapon.spell_damage}</p>
+                      </div>
 
-                <div className = "stat-column-container">
-                  <div className = "stat-column">
-                    <div className = "stat-row">
-                      <p className = "stat-label">id</p><p className ="stat">{currentWeapon.id}</p>
-                      
-                    </div>
-                    <div className = "stat-row">
-                      <p className = "stat-label">level</p><p className ="stat">{currentWeapon.sl}</p>
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.gouge) }}>
+                        <p className = "stat-label">gouge</p><p className ="stat">{currentWeapon.gouge}</p>
+                      </div>
+
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.guard) }}>
+                        <p className = "stat-label">guard</p><p className ="stat">{currentWeapon.guard}</p>
+                      </div>
                     </div>
 
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.stamina) }}>
-                      <p className = "stat-label">stamina</p><p className ="stat">{currentWeapon.stamina}</p>
-                    </div>
+                    <div className = "stat-column">
 
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.speed) }}>
-                      <p className = "stat-label">speed</p><p className ="stat">{currentWeapon.speed}</p>
-                    </div>
+                      <div className = "stat-row" >
+                        <p className = "stat-label">price</p><p className ="stat">$ {currentWeapon.price}</p>
+                      </div>
 
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.melee_damage) }}>
-                      <p className = "stat-label">melee dmg</p><p className ="stat">{currentWeapon.melee_damage}</p>
-                    </div>
+                      <hr/>
 
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.spell_damage) }}>
-                      <p className = "stat-label">spell dmg</p><p className ="stat">{currentWeapon.spell_damage}</p>
-                    </div>
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.nerve) }}>
+                        <p className = "stat-label">nerve</p><p className ="stat">{currentWeapon.nerve}</p>
+                      </div>
 
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.gouge) }}>
-                      <p className = "stat-label">gouge</p><p className ="stat">{currentWeapon.gouge}</p>
-                    </div>
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.charge) }}>
+                        <p className = "stat-label">charge</p><p className ="stat">{currentWeapon.charge}</p>
+                      </div>
 
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.guard) }}>
-                      <p className = "stat-label">guard</p><p className ="stat">{currentWeapon.guard}</p>
-                    </div>
-                  </div>
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.ranged_damage) }}>
+                        <p className = "stat-label">ranged dmg</p><p className ="stat">{currentWeapon.ranged_damage}</p>
+                      </div>
 
-                  <div className = "stat-column">
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.healing) }}>
+                        <p className = "stat-label">healing</p><p className ="stat">{currentWeapon.healing}</p>
+                      </div>
 
-                    <div className = "stat-row" >
-                      <p className = "stat-label">price</p><p className ="stat">$ {currentWeapon.price}</p>
-                    </div>
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.resilience) }}>
+                        <p className = "stat-label">resilience</p><p className ="stat">{currentWeapon.resilience}</p>
+                      </div>
 
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.nerve) }}>
-                      <p className = "stat-label">nerve</p><p className ="stat">{currentWeapon.nerve}</p>
-                    </div>
-
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.charge) }}>
-                      <p className = "stat-label">charge</p><p className ="stat">{currentWeapon.charge}</p>
-                    </div>
-
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.ranged_damage) }}>
-                      <p className = "stat-label">ranged dmg</p><p className ="stat">{currentWeapon.ranged_damage}</p>
-                    </div>
-
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.healing) }}>
-                      <p className = "stat-label">healing</p><p className ="stat">{currentWeapon.healing}</p>
-                    </div>
-
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.resilience) }}>
-                      <p className = "stat-label">resilience</p><p className ="stat">{currentWeapon.resilience}</p>
-                    </div>
-
-                    <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.dominance) }}>
-                      <p className = "stat-label">dominance</p><p className ="stat">{currentWeapon.dominance}</p>
+                      <div className = "stat-row" style={{ color: getActiveColor(currentWeapon.dominance) }}>
+                        <p className = "stat-label">dominance</p><p className ="stat">{currentWeapon.dominance}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <p className="item-description">"{currentWeapon.description}"</p> 
-              </div>
-                : <img src={logo} className="App-logo" alt="logo" />
-            }
-            
+                  <p className="item-description">"{currentWeapon.description}"</p> 
+                </div>
+                  : <img src={logo} className="App-logo" alt="logo" />
+              }
+              
 
           </div>
         </div>
+      </div>
+
 
 
       </header>
