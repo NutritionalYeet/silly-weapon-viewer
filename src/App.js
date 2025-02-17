@@ -139,11 +139,13 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
+
+      <h1>Weapon Viewer</h1>
         <div id="mainRow">
-          <div className = "weapon-selector border-window">
+          <div className = "weapon-selector">
             
 
-                <h1>Weapons List</h1>
+                {/* <h2>Weapons List</h2> */}
                 <ul className = "weapons-list">
                   {items.map((item) =>(
                     <li className = "" key = {item.id}><button className = "border-window" style={{ color: getWeaponColor(item.quality) }} onClick={() => assignCurrentWeapon(item)}>
@@ -168,9 +170,9 @@ function App() {
 
                 <div className="item-header">
                 <img className="border-window item-image" src={currentWeapon.getIconPath()} alt="Weapon icon" />
-                    <h1 className="item-title" style={{ color: getWeaponColor(currentWeapon.quality) }}>
+                    <h2 className="item-title" style={{ color: getWeaponColor(currentWeapon.quality) }}>
                       {currentWeapon.name}
-                    </h1>
+                    </h2>
                 </div>
 
                 <div className = "stat-column-container">
