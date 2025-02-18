@@ -7,7 +7,8 @@
 
   --quality-debug: rgb(96,64,75);
   --quality-cheap: rgb(66,66,66);
-  --quality-ok: rgb(116,167,255);
+  --quality-ok: rgb(255, 255, 255);
+  --quality-decent: rgb(116,167,255);
   --quality-good: rgb(131,214,74);
   --quality-superior: rgb(199,199,0);
   --quality-rare: rgb(248,176,0);
@@ -83,6 +84,9 @@ body {
   align-self: center;
   width:100%;
   font-size: 16px;
+
+  margin-top:auto;
+  margin-bottom:auto;
 
   
 
@@ -219,8 +223,6 @@ li {
   padding: 1em;
   margin-left:1em;
   -webkit-box-reflect: below 5px radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, transparent 100%);
-
-  
 }
 
 .weapon-info-grid

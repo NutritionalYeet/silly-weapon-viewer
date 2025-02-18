@@ -99,6 +99,8 @@ function App() {
           return "var(--quality-cheap)";
         case "ok":
           return "var(--quality-ok)";
+        case "decent":
+            return "var(--quality-decent)";
         case "good":
           return "var(--quality-good)";
         case "superior":
@@ -249,7 +251,11 @@ function App() {
                       </div>
                     </div>
 
-                    <i><p className="item-description">"{currentWeapon.description}"</p></i>
+                    {(currentWeapon.description !== "" && currentWeapon.description !== null) &&(
+                          <i><p className="item-description">"{currentWeapon.description}"</p></i>
+                    )}
+
+                    
 
                     {(currentWeapon.use_text !== "" && currentWeapon.use_text !== null) &&(
                           <p className="item-use-text">Use: {currentWeapon.use_text}</p>
