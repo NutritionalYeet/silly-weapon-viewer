@@ -150,20 +150,27 @@ function App() {
           <div id="mainRow">
             <div className = "weapon-selector">
               
-
-                  {/* <h2>Weapons List</h2> */}
-                  <ul className = "weapons-list">
-                    {items.map((item) =>(
-                      <li className = "" key = {item.id}><button className = "border-window" style={{ color: getWeaponColor(item.quality) }} onClick={() => assignCurrentWeapon(item)}>
-                        <div className = "list-item" >
-                          <img className = "list-item-icon border-window"  src={item.getIconPath()} alt="Weapon icon" ></img>
-                          <p className = "list-item-name" >{item.name}</p>
-                        </div>
-                        
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
+                  {
+                    items && items.length > 0 ?
+                    <ul className = "weapons-list">
+                      {items.map((item) =>(
+                        <li className = "" key = {item.id}><button className = "border-window" style={{ color: getWeaponColor(item.quality) }} onClick={() => assignCurrentWeapon(item)}>
+                          <div className = "list-item" >
+                            <img className = "list-item-icon border-window"  src={item.getIconPath()} alt="Weapon icon" ></img>
+                            <p className = "list-item-name" >{item.name}</p>
+                          </div>
+                          
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                    : 
+                    <div className='error_message'>
+                      <p>No data from the server.</p>
+                      <p>Start the server, then try refreshing.</p>
+                      <p>Ensure the database has at least one entry.</p>
+                    </div>
+                  }
             </div>
             <div id="content">
 

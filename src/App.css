@@ -5,8 +5,10 @@
   --accent-color: #63718C;
   --text-color: #b1c4de;
 
-  --quality-debug: rgb(96,64,75);
-  --quality-cheap: rgb(66,66,66);
+  --bg-inner-color: rgb(66,66,66);
+
+  --quality-debug: rgb(141, 92, 109);
+  --quality-cheap: rgb(123, 123, 123);
   --quality-ok: rgb(255, 255, 255);
   --quality-decent: rgb(116,167,255);
   --quality-good: rgb(131,214,74);
@@ -68,9 +70,15 @@ body {
   flex-direction: column;
 }
 
+.item-description, .item-use-text
+{
+  line-height: 110%;
+}
+
+
 .item-description
 {
-  line-height: 105%;
+  
   margin-top: 2em;
   min-height: 17px;
   color:burlywood;
@@ -110,13 +118,21 @@ body {
 
 h1
 {
-  margin:10%;
+
+  margin:8%;
   text-align: center;
   align-self: center;
   justify-self: center;
 
   -webkit-box-reflect: below 5px radial-gradient(circle, rgba(255, 255, 255, 0.05) 20%, transparent 100%);
   /* margin-right: 3em; */
+}
+
+.error_message
+{
+  color:#A53633;
+  padding:1em;
+  font-size:18px
 }
 
 .list-item-icon
@@ -160,6 +176,8 @@ h1
   border-radius: .25em;
   /* padding: .5em; */
   padding: .2em;
+
+  max-height:545px;
   
 
   backdrop-filter: blur(10px);
@@ -322,7 +340,7 @@ li {
 }
 
 .App-header {
-  background: radial-gradient(circle, var(--quality-cheap) 20%, var(--background-color) 100%);
+  background: radial-gradient(circle, var(--bg-inner-color) 20%, var(--background-color) 100%);
   /* background-color: var(--background-color); */
   min-height: 100vh;
   display: flex;
