@@ -1,9 +1,11 @@
 import logo from './inv_weapon_knife_vector.svg';
+import { ReactComponent as MonetarySymbol } from './money_symbol.svg';
 import './App.css';
 import { useEffect, useState } from "react";
-import { color } from 'three/tsl';
 
 const dbUrl = `/chat_app/fetch_weapons.php`; 
+
+const title = `Armory`;
 
 class Weapon
 {
@@ -95,11 +97,15 @@ const getActiveColor = (stat) => {
   return color;
 };
 
-const createStatRow = (stat,label) =>
+const createStatRow = (stat,label, hideIfZero) =>
 {
-  return <div className = "stat-row" style={{ color: getActiveColor(stat) }}>
-      <p className = "stat-label">{label}</p><p className ="stat">{stat}</p>
-    </div>;
+  return (!(hideIfZero && stat == 0)) 
+    ? <div className = "stat-row" style={{ color: getActiveColor(stat) }}>
+        <p className = "stat-label">{label}</p><p className ="stat">{stat}</p>
+      </div>
+    : 
+      null
+    ;
 }
 
 function App() {
@@ -156,7 +162,7 @@ function App() {
 
       <div className="main">
 
-        <h1>Weapon Viewer</h1>
+       <b><h1>{title}</h1></b>
           <div id="mainRow">
             <div className = "weapon-selector">
               
@@ -165,9 +171,9 @@ function App() {
                     ?
                       <ul className = "weapons-list">
                         {items.map((item) =>(
-                          <li className = "" key = {item.id}><button className = "border-window" style={{ color: getWeaponColor(item.quality) }} onClick={() => assignCurrentWeapon(item)}>
+                          <li className = "" key = {item.id}><button className = "border-window-subtle" style={{ color: getWeaponColor(item.quality) }} onClick={() => assignCurrentWeapon(item)}>
                             <div className = "list-item" >
-                              <img className = "list-item-icon border-window"  src={item.getIconPath()} alt="Weapon icon" ></img>
+                              <img className = "list-item-icon border-window-subtle"  src={item.getIconPath()} alt="Weapon icon" ></img>
                               <p className = "list-item-name" >{item.name}</p>
                             </div>
                             
@@ -203,34 +209,37 @@ function App() {
                     <div className = "stat-column-container">
                       <div className = "stat-column">
 
-                        {createStatRow(currentWeapon.id,`id`)}
+                        
+                        {createStatRow(currentWeapon.id,`id`/*Don't hide id if === 0*/)}
 
                         <hr/>
 
-                        {createStatRow(currentWeapon.sl,`level`)}
-                        {createStatRow(currentWeapon.stamina,`stamina`)}
-                        {createStatRow(currentWeapon.speed,`speed`)}
-                        {createStatRow(currentWeapon.melee_damage,`melee dmg`)}
-                        {createStatRow(currentWeapon.spell_damage,`spell dmg`)}
-                        {createStatRow(currentWeapon.gouge,`gouge`)}
-                        {createStatRow(currentWeapon.guard,`guard`)}
+                        {createStatRow(currentWeapon.sl,`level`) /*Don't hide level if === 0*/}
+                        {createStatRow(currentWeapon.stamina,`stamina`,true)}
+                        {createStatRow(currentWeapon.speed,`speed`,true)}
+                        {createStatRow(currentWeapon.melee_damage,`melee dmg`,true)}
+                        {createStatRow(currentWeapon.spell_damage,`spell dmg`,true)}
+                        {createStatRow(currentWeapon.gouge,`gouge`,true)}
+                        {createStatRow(currentWeapon.guard,`guard`,true)}
                         
                       </div>
 
                       <div className = "stat-column">
 
                         <div className = "stat-row" >
-                          <p className = "stat-label">price</p><p className ="stat">$ {currentWeapon.price}</p>
+                          <p className = "stat-label">price</p>
+                          <MonetarySymbol className="money-symbol" />
+                          <p className ="stat">{currentWeapon.price}</p>
                         </div>
 
                         <hr/>
 
-                        {createStatRow(currentWeapon.nerve,`nerve`)}
-                        {createStatRow(currentWeapon.charge,`charge`)}
-                        {createStatRow(currentWeapon.ranged_damage,`ranged dmg`)}
-                        {createStatRow(currentWeapon.healing,`healing`)}
-                        {createStatRow(currentWeapon.resilience,`resilience`)}
-                        {createStatRow(currentWeapon.dominance,`dominance`)}
+                        {createStatRow(currentWeapon.nerve,`nerve`,true)}
+                        {createStatRow(currentWeapon.charge,`charge`,true)}
+                        {createStatRow(currentWeapon.ranged_damage,`ranged dmg`,true)}
+                        {createStatRow(currentWeapon.healing,`healing`,true)}
+                        {createStatRow(currentWeapon.resilience,`resilience`,true)}
+                        {createStatRow(currentWeapon.dominance,`dominance`,true)}
 
                       </div>
                     </div>
