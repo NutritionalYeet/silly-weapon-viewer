@@ -260,10 +260,8 @@ function App() {
                       </div>
                     </div>
 
+
                     {currentWeapon.description && <i><p className="item-description">"{currentWeapon.description}"</p></i>}
-                    {/* {(currentWeapon.description !== "" && currentWeapon.description !== null) &&(
-                          <i><p className="item-description">"{currentWeapon.description}"</p></i>
-                    )} */}
 
                     
 
