@@ -48,10 +48,26 @@ class Weapon
     }
 }
 
-let weapons = [];
+/**
+ * Returns enough placeholder weapons to allow for scrolling in the UI, for demonstration purposes.
+ */
+const createPlaceholderWeapons = () =>
+  {
+    const arr = [];
 
-let currentWeapon = null;
+    for (let i = 0; i < 15; i++)
+      {
+        arr.push(new Weapon(0, `PlaceholderWeapon ${i}`))
+      }
 
+    return arr;
+  }
+
+  /**
+   * Fetches weapons from a database.
+   * @param {*} url 
+   * @returns an array of Weapons
+   */
 const fetchWeapons = async (url) => {
   try
   {
@@ -73,14 +89,13 @@ const fetchWeapons = async (url) => {
         ))
       : [];
 
-    currentWeapon = weapons.length > 0? weapons[0] : null;
-
     return weapons;
   }
   catch(error)
   {
     console.error("Error fetching weapons: "+error);
-    return[];
+    return createPlaceholderWeapons() || []; //Generate placeholder weapons; comment to suppress this behavior.
+    // return [];
   }
 };
 
@@ -115,7 +130,7 @@ function App() {
   //updating the current weapon
   const stateArray = useState(null);
   const currentWeapon = stateArray[0];
-  const assignCurrentWeapon = stateArray[1];
+  const assignCurrentWeapon = stateArray[1]; //could be optimized with useCallback
 
   const getWeaponColor = (quality) => 
     {
@@ -146,6 +161,7 @@ function App() {
 
 
   useEffect(()=>{
+
     const getItems = async () =>
     {
       const fetchedItems = await fetchWeapons(dbUrl);
@@ -154,7 +170,7 @@ function App() {
 
     getItems();
 
-  },[dbUrl]); // Only updates if the url changes
+  },[]); // If desired, put a value to track inside the square brackets.
 
   return (
     <div className="App">
@@ -244,9 +260,10 @@ function App() {
                       </div>
                     </div>
 
-                    {(currentWeapon.description !== "" && currentWeapon.description !== null) &&(
+                    {currentWeapon.description && <i><p className="item-description">"{currentWeapon.description}"</p></i>}
+                    {/* {(currentWeapon.description !== "" && currentWeapon.description !== null) &&(
                           <i><p className="item-description">"{currentWeapon.description}"</p></i>
-                    )}
+                    )} */}
 
                     
 
