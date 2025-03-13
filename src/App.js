@@ -108,10 +108,15 @@ const getActiveColor = (stat) => {
   const color = (num === 0) ? "var(--stat-zero)" : 
                 (num < 0) ? "var(--stat-negative)" : 
                 "var(--text-color)";
-  console.log(color); // Check what color is returned
   return color;
 };
 
+/**
+ * @param {*} stat The stat to display
+ * @param {*} label The name of the stat
+ * @param {*} hideIfZero If true, will not render this stat if it is 0.
+ * @returns 
+ */
 const createStatRow = (stat,label, hideIfZero) =>
 {
   return (!(hideIfZero && stat == 0)) 
