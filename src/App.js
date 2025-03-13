@@ -125,13 +125,27 @@ const createStatRow = (stat,label, hideIfZero) =>
 
 function App() {
 
+  //Handles items retrieved from database
   const [items,setItems] = useState([]);
 
   //updating the current weapon
   const stateArray = useState(null);
   const currentWeapon = stateArray[0];
-  const assignCurrentWeapon = stateArray[1]; //could be optimized with useCallback
+  const assignCurrentWeapon = stateArray[1]; //could be optimized with useCallback (so it doesn't rerender if you click the same item more than once)
 
+  useEffect(()=>{
+    const getItems = async () =>
+    {
+      const fetchedItems = await fetchWeapons(dbUrl);
+      setItems(Array.isArray(fetchedItems) ? fetchedItems : []);
+    };
+    getItems();
+  },[]); // If desired, put a value to track inside the square brackets.
+
+  /**
+   * @param {*} quality the enum quality of the weapon
+   * @returns a string
+   */
   const getWeaponColor = (quality) => 
     {
       switch (quality) {
@@ -157,20 +171,6 @@ function App() {
           return "var(--primary-color)";
     }
   };
-
-
-
-  useEffect(()=>{
-
-    const getItems = async () =>
-    {
-      const fetchedItems = await fetchWeapons(dbUrl);
-      setItems(Array.isArray(fetchedItems) ? fetchedItems : []);
-    };
-
-    getItems();
-
-  },[]); // If desired, put a value to track inside the square brackets.
 
   return (
     <div className="App">
@@ -207,13 +207,10 @@ function App() {
             </div>
             <div id="content">
 
-
               <div className = "weapon-info-window">
                 {
                   currentWeapon ?
                   <div className ="weapon-info-grid">
-
-                    
 
                     <div className="item-header">
                     <img className="border-window item-image" src={currentWeapon.getIconPath()} alt="Weapon icon" />
