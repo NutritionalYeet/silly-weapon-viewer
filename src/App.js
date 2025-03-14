@@ -197,6 +197,7 @@ function App() {
    */
   const filterResults = (text) => {
 
+
     if (typeof(text) !== "string" || text.trim() === ``) 
       {
         //show all results
@@ -252,7 +253,9 @@ function App() {
        <b><h1>{title}</h1></b>
           <div id="mainRow">
             <div className = "weapon-selector">
-              <input className = 'search-bar' id="filled-basic" label="Outlined" variant="outlined" placeholder="Search the armory..." onChange={(text) => filterResults(text.target.value)}></input>
+              <input className = 'search-bar' id="filled-basic" label="Outlined" variant="outlined" placeholder="Search the armory..." 
+              onChange={(text) => filterResults(text.target.value)}
+              onKeyDown={(e) => {if (e.key === `Enter` || e.keyCode === 13) setCurrentWeapon(filteredItems[0])}}></input>
                   {
                     items && items.length > 0 
                     ?
@@ -260,7 +263,9 @@ function App() {
                       
                       <ul className = "weapons-list">
                         {filteredItems.map((item) =>(
-                          <li className = "" key = {item.id}><button className = "border-window-subtle" style={{ color: getWeaponColor(item.quality) }} onClick={() => setCurrentWeapon(item)}>
+                          <li className = "" key = {item.id}><button className = "border-window-subtle" 
+                            style={{ color: getWeaponColor(item.quality) }} 
+                            onClick={() => setCurrentWeapon(item)}>
                             <div className = "list-item" >
                               <img className = "list-item-icon border-window-subtle"  src={item.getIconPath()} alt="Weapon icon" ></img>
                               <p className = "list-item-name" >{item.name}</p>
