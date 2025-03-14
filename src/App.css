@@ -211,21 +211,32 @@ h1
 
 }
 
-.weapon-selector
-{
-  box-shadow: 
-  0 -5px 30px 1px rgba(212, 168, 93, 0.093),
-  0 10px 64px 20px #b1c4de0f,
 
-  0px 1px 10px 1px #2c7c974f,
-  -10px 5px 70px 0px rgba(0, 0, 0, 0.143) inset;
+.search-bar {
+  font-family: 'Friz Quadrata';
+  font-style: italic;
+  margin: 6px;
+  min-width: 10em;
+  max-width: 100%; 
+  color: var(--text-color);
+  background-color: rgba(0, 0, 0, 0.167);
+  text-align: left;
+  backdrop-filter: blur(10px);
+  box-shadow: 
+    0 -5px 10px 1px rgba(212, 168, 93, 0.05),
+    0 10px 14px 20px #b1c4de0f,
+    0px 1px 10px 1px #2c7c974f,
+    -10px 5px 20px 0px rgba(0, 0, 0, 0.1) inset;
+
+  box-sizing: border-box; 
 }
 
-.weapon-selector {
+.weapon-selector{
 
   margin-top:15px;
   min-width: 10em;
-  max-width: 20%;
+
+  max-width: 10em;
   display: flex;
   flex-direction: column;
   color: var(--text-color);
@@ -235,6 +246,7 @@ h1
   border-radius: .25em;
   padding: .2em;
 
+  min-height: 350px;
   max-height:350px;
   
 
@@ -242,6 +254,13 @@ h1
 
   /*Works with scrolling in Chrome, but not Safari*/
   -webkit-box-reflect: below 5px radial-gradient(circle, rgba(255, 255, 255, 0.1) 20%, transparent 100%);
+
+  box-shadow: 
+  0 -5px 30px 1px rgba(212, 168, 93, 0.093),
+  0 10px 64px 20px #b1c4de0f,
+
+  0px 1px 10px 1px #2c7c974f,
+  -10px 5px 70px 0px rgba(0, 0, 0, 0.143) inset;
 }
 
 li button {

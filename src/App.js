@@ -7,8 +7,34 @@ const dbUrl = `/chat_app/fetch_weapons.php`;
 
 const title = `Armory`;
 
+/**
+ * A template for a weapon object.
+ */
 class Weapon
 {
+  /**
+   * 
+   * @param {*} id the object id
+   * @param {*} name the name of the weapon
+   * @param {*} icon_file_path the name of the image file
+   * @param {*} description
+   * @param {*} quality enum
+   * @param {*} sl "security level" - the level of the item
+   * @param {*} price
+   * @param {*} stamina 
+   * @param {*} nerve 
+   * @param {*} speed 
+   * @param {*} charge 
+   * @param {*} melee_damage 
+   * @param {*} ranged_damage 
+   * @param {*} spell_damage 
+   * @param {*} healing 
+   * @param {*} gouge 
+   * @param {*} resilience 
+   * @param {*} guard 
+   * @param {*} dominance 
+   * @param {*} use_text 
+   */
   constructor(id,name,icon_file_path,description, quality, sl, price, stamina,
     nerve, speed, charge, melee_damage, ranged_damage, spell_damage,
     healing, gouge, resilience, guard, dominance, use_text
@@ -38,6 +64,9 @@ class Weapon
     this.use_text = use_text;
   }
 
+  /**
+   * @returns the name of the image associated with this item
+   */
   getIconPath()
     {
       return `/assets/icons/${(this.icon_file_path !== "" && this.icon_file_path != null) 
@@ -94,11 +123,23 @@ const fetchWeapons = async (url) => {
   catch(error)
   {
     console.error("Error fetching weapons: "+error);
-    return createPlaceholderWeapons() || []; //Generate placeholder weapons; comment to suppress this behavior.
+
+    //Generate placeholder weapons; remove this line to suppress this behavior.
+    return createPlaceholderWeapons() || []; 
+
+    // Uncomment this to return an empty array
     // return [];
   }
 };
 
+/**
+ * Gets the color a stat should be based on it is positive, zero, or negative.
+ * @note By default, the app currently hides stats that are unused.
+ * If you suppress the hiding behavior, stats that are zero will display with
+ * the stat-zero color (i.e. gray).
+ * @param {*} stat a number
+ * @returns a color
+ */
 const getActiveColor = (stat) => {
 
   if (isNaN(stat)) return "var(--text-color)";
@@ -112,6 +153,7 @@ const getActiveColor = (stat) => {
 };
 
 /**
+ * Generates an HTML row featuring the label and value of an item stat.
  * @param {*} stat The stat to display
  * @param {*} label The name of the stat
  * @param {*} hideIfZero If true, will not render this stat if it is 0.
@@ -128,24 +170,48 @@ const createStatRow = (stat,label, hideIfZero) =>
     ;
 }
 
+
+
+
 function App() {
 
-  //Handles items retrieved from database
+  const [filteredItems, setFilteredItems] = useState([]);
+
   const [items,setItems] = useState([]);
 
-  //updating the current weapon
-  const stateArray = useState(null);
-  const currentWeapon = stateArray[0];
-  const assignCurrentWeapon = stateArray[1]; //could be optimized with useCallback (so it doesn't rerender if you click the same item more than once)
+  const [currentWeapon, setCurrentWeapon] = useState(null);
 
   useEffect(()=>{
     const getItems = async () =>
     {
       const fetchedItems = await fetchWeapons(dbUrl);
       setItems(Array.isArray(fetchedItems) ? fetchedItems : []);
+      setFilteredItems(Array.isArray(fetchedItems) ? fetchedItems : []);
     };
     getItems();
-  },[]); // If desired, put a value to track inside the square brackets.
+  },[dbUrl]);
+
+  /**
+   * filters results and updates the array of filtered items
+   * @param {*} text search term(s) - string
+   */
+  const filterResults = (text) => {
+
+    if (typeof(text) !== "string" || text.trim() === ``) 
+      {
+        //show all results
+        setFilteredItems(items);
+        return;
+      }
+
+    const keyWords = text.toLowerCase().trim().split(` `);
+  
+    const filtered = items.filter(item => 
+      keyWords.some(keyword => item.name.toLowerCase().includes(keyword))
+    );
+  
+    setFilteredItems(filtered);  // Ensure this updates the state with filtered results
+  };
 
   /**
    * @param {*} quality the enum quality of the weapon
@@ -186,13 +252,15 @@ function App() {
        <b><h1>{title}</h1></b>
           <div id="mainRow">
             <div className = "weapon-selector">
-              
+              <input className = 'search-bar' id="filled-basic" label="Outlined" variant="outlined" placeholder="Search the armory..." onChange={(text) => filterResults(text.target.value)}></input>
                   {
                     items && items.length > 0 
                     ?
+                    
+                      
                       <ul className = "weapons-list">
-                        {items.map((item) =>(
-                          <li className = "" key = {item.id}><button className = "border-window-subtle" style={{ color: getWeaponColor(item.quality) }} onClick={() => assignCurrentWeapon(item)}>
+                        {filteredItems.map((item) =>(
+                          <li className = "" key = {item.id}><button className = "border-window-subtle" style={{ color: getWeaponColor(item.quality) }} onClick={() => setCurrentWeapon(item)}>
                             <div className = "list-item" >
                               <img className = "list-item-icon border-window-subtle"  src={item.getIconPath()} alt="Weapon icon" ></img>
                               <p className = "list-item-name" >{item.name}</p>
