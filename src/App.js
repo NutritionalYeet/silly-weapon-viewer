@@ -7,6 +7,44 @@ const dbUrl = `/chat_app/fetch_weapons.php`;
 
 const title = `Armory`;
 
+ class WeaponManager
+{
+  static fetchWeapons = async (url) => {
+    try
+    {
+      const response = await fetch(url);
+  
+      if (!response.ok)
+        {
+          throw new Error("Nooo! Failed to fetch weapons! :(");
+        }
+  
+      const data = await response.json();
+  
+      const weapons = Array.isArray(data.weapons) 
+        ? data.weapons.map(weapon => 
+          new Weapon(weapon.id, weapon.name, weapon.icon_file_path, weapon.description, weapon.quality,
+            weapon.sl, weapon.price, weapon.stamina, weapon.nerve, weapon.speed, weapon.charge,
+            weapon.melee_damage, weapon.ranged_damage, weapon.spell_damage, weapon.healing, weapon.gouge,
+            weapon.resilience, weapon.guard,weapon.dominance, weapon.use_text
+          ))
+        : [];
+  
+      return weapons;
+    }
+    catch(error)
+    {
+      console.error("Error fetching weapons: "+error);
+  
+      //Generate placeholder weapons; remove this line to suppress this behavior.
+      return createPlaceholderWeapons() || []; 
+  
+      // Uncomment this to return an empty array
+      // return [];
+    }
+  };
+}
+
 /**
  * A template for a weapon object.
  */
@@ -97,40 +135,40 @@ const createPlaceholderWeapons = () =>
    * @param {*} url 
    * @returns an array of Weapons
    */
-const fetchWeapons = async (url) => {
-  try
-  {
-    const response = await fetch(url);
+// const fetchWeapons = async (url) => {
+//   try
+//   {
+//     const response = await fetch(url);
 
-    if (!response.ok)
-      {
-        throw new Error("Nooo! Failed to fetch weapons! :(");
-      }
+//     if (!response.ok)
+//       {
+//         throw new Error("Nooo! Failed to fetch weapons! :(");
+//       }
 
-    const data = await response.json();
+//     const data = await response.json();
 
-    const weapons = Array.isArray(data.weapons) 
-      ? data.weapons.map(weapon => 
-        new Weapon(weapon.id, weapon.name, weapon.icon_file_path, weapon.description, weapon.quality,
-          weapon.sl, weapon.price, weapon.stamina, weapon.nerve, weapon.speed, weapon.charge,
-          weapon.melee_damage, weapon.ranged_damage, weapon.spell_damage, weapon.healing, weapon.gouge,
-          weapon.resilience, weapon.guard,weapon.dominance, weapon.use_text
-        ))
-      : [];
+//     const weapons = Array.isArray(data.weapons) 
+//       ? data.weapons.map(weapon => 
+//         new Weapon(weapon.id, weapon.name, weapon.icon_file_path, weapon.description, weapon.quality,
+//           weapon.sl, weapon.price, weapon.stamina, weapon.nerve, weapon.speed, weapon.charge,
+//           weapon.melee_damage, weapon.ranged_damage, weapon.spell_damage, weapon.healing, weapon.gouge,
+//           weapon.resilience, weapon.guard,weapon.dominance, weapon.use_text
+//         ))
+//       : [];
 
-    return weapons;
-  }
-  catch(error)
-  {
-    console.error("Error fetching weapons: "+error);
+//     return weapons;
+//   }
+//   catch(error)
+//   {
+//     console.error("Error fetching weapons: "+error);
 
-    //Generate placeholder weapons; remove this line to suppress this behavior.
-    return createPlaceholderWeapons() || []; 
+//     //Generate placeholder weapons; remove this line to suppress this behavior.
+//     return createPlaceholderWeapons() || []; 
 
-    // Uncomment this to return an empty array
-    // return [];
-  }
-};
+//     // Uncomment this to return an empty array
+//     // return [];
+//   }
+// };
 
 /**
  * Gets the color a stat should be based on it is positive, zero, or negative.
@@ -184,7 +222,7 @@ function App() {
   useEffect(()=>{
     const getItems = async () =>
     {
-      const fetchedItems = await fetchWeapons(dbUrl);
+      const fetchedItems = await WeaponManager.fetchWeapons(dbUrl);
       setItems(Array.isArray(fetchedItems) ? fetchedItems : []);
       setFilteredItems(Array.isArray(fetchedItems) ? fetchedItems : []);
     };
@@ -255,7 +293,9 @@ function App() {
             <div className = "weapon-selector">
               <input className = 'search-bar' id="filled-basic" label="Outlined" variant="outlined" placeholder="Search the armory..." 
               onChange={(text) => filterResults(text.target.value)}
-              onKeyDown={(e) => {if (e.key === `Enter` || e.keyCode === 13) setCurrentWeapon(filteredItems[0])}}></input>
+
+              //automatically select the first item in the search results when enter is pressed
+              onKeyDown={(e) => {if (filteredItems.length > 0 && (e.key === `Enter` || e.keyCode === 13)) setCurrentWeapon(filteredItems[0])}}></input>
                   {
                     items && items.length > 0 
                     ?
@@ -277,7 +317,7 @@ function App() {
                       </ul>
                     : 
                       <div className='error_message'>
-                        <p>No data from the server.</p>
+                        <p>No results found.</p>
                         <p>Start the server, then try refreshing.</p>
                         <p>Ensure the database has at least one entry.</p>
                       </div>
