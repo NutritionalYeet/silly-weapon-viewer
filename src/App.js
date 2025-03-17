@@ -370,7 +370,6 @@ function App() {
    */
   const filterResults = (text) => {
 
-
     if (typeof(text) !== "string" || text.trim() === ``) 
       {
         //show all results
