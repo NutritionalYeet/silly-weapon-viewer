@@ -4,10 +4,11 @@
 
 :root {
   --background-color: #111323;
-  --primary-color: #A53633;
+  --primary-color: #b1c4de;
   --secondary-color: #76807C;
   --accent-color: #63718C;
   --text-color: #b1c4de;
+  --error-color: #A53633;
 
   --bg-inner-color: rgb(66,66,66);
 

@@ -121,9 +121,8 @@ class Item
     }
 
    /**
-    * Determines the color the name of the weapon should display as.
-   * @param {*} quality the enum quality of an item
-   * @returns a string
+   * @returns a string for the color of this item, assuming it has an enum called 'quality'.
+   * If not, return the primary color of the app.
    */
     static getItemColor = (quality) => 
       {
@@ -153,6 +152,7 @@ class Item
 
   /**
    * @returns a string for the color of this item, assuming it has an enum called 'quality'.
+   * If not, return the primary color of the app.
    */
    getItemColor = () => 
     {
@@ -408,10 +408,12 @@ function App() {
                     ?
 
                       <ul className = "weapons-list">
-                        {filteredItems.map((item) =>(
+                        {
+                          /*Generate a list of weapons.*/
+                          filteredItems.map((item) =>(
                           <li className = "" key = {item.id}><button className = "border-window-subtle" 
-                            style={{ color: item.getItemColor() }} 
-                            onClick={() => setCurrentWeapon(item)}>
+                            style={{ color: item.getItemColor() /*Assuming items have a "quality" enum, gets a color of the item name */}} 
+                            onClick={() => setCurrentWeapon(item)/* */}>
                             <div className = "list-item" >
                               <img className = "list-item-icon border-window-subtle"  src={item.getIconPath()} alt="Weapon icon" ></img>
                               <p className = "list-item-name" >{item.name}</p>
