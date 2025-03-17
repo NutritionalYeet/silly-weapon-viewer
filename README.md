@@ -1,6 +1,6 @@
 # Silly Weapon Viewer
 
-A simple app that allows you to view items from a local server.
+A simple React app that allows you to view items from a local server.
 
 ## To use
 
