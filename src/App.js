@@ -121,7 +121,7 @@ class Item
     }
 
    /**
-    * Figures out what color the name of the weapon should display as.
+    * Determines the color the name of the weapon should display as.
    * @param {*} quality the enum quality of an item
    * @returns a string
    */
@@ -197,13 +197,13 @@ class Weapon extends Item
    * @param {*} price
    * @param {*} stamina 
    * @param {*} nerve 
-   * @param {*} speed 
-   * @param {*} charge 
-   * @param {*} melee_damage 
-   * @param {*} ranged_damage 
-   * @param {*} spell_damage 
+   * @param {*} speed weapon-specific stat
+   * @param {*} charge weapon-specific stat
+   * @param {*} melee_damage weapon-specific stat
+   * @param {*} ranged_damage weapon-specific stat
+   * @param {*} spell_damage weapon-specific stat
    * @param {*} healing 
-   * @param {*} gouge 
+   * @param {*} gouge weapon-specific stat
    * @param {*} resilience 
    * @param {*} guard 
    * @param {*} dominance 
@@ -258,7 +258,7 @@ class Weapon extends Item
 }
 
 /**
- * Returns enough placeholder weapons to allow for scrolling in the UI, for demonstration purposes.
+ * @returns enough placeholder weapons to allow for scrolling in the UI, for demonstration purposes.
  */
 const createPlaceholderWeapons = () =>
   {
@@ -302,15 +302,15 @@ const getActiveColor = (stat) => {
  * Generates an HTML row featuring the label and value of an item stat.
  * @param {*} stat The stat to display
  * @param {*} label The name of the stat
- * @param {*} hideIfZero If true, will not render this stat if it is 0.
+ * @param {*} shouldHideZero If true, will not render this stat if it is 0.
  * @returns null if the stat is invalid or if the stat is 0 and hideIfZero is true.
  */
-const createStatRow = (stat, label, hideIfZero, index) => {
+const createStatRow = (stat, label, shouldHideZero, index) => {
   if (isNaN(stat)) return null;
 
-  return !(hideIfZero && parseInt(stat) === 0) ? (
+  return !(shouldHideZero && parseInt(stat) === 0) ? (
     <div
-     /**key to prevent a React error*/
+     /**key to prevent React errors*/
       key={`${label}-${index}`} 
       className="stat-row"
       style={{ color: getActiveColor(stat) }}
@@ -321,10 +321,15 @@ const createStatRow = (stat, label, hideIfZero, index) => {
   ) : null;
 };
 
+/**
+ * @param {*} stats Expects an array of objects with label, value, and hideIfZero properties.
+ * @returns an array of stat rows (stat labels + values)
+ */
 const createStatRows = (stats) => {
   return stats.map((stat, index) => {
+    if (typeof(stat.label) !== "string" || stat.shouldHideZero === undefined) return null;
     if (stat.value === 0 && stat.shouldHideZero) return null;
-    return createStatRow(stat.value, stat.label, stat.shouldHideZero);
+    return createStatRow(stat.value, stat.label, stat.shouldHideZero, index);
   });
 };
 
@@ -360,7 +365,7 @@ function App() {
   },[]);
 
   /**
-   * filters results and updates the array of filtered items
+   * filters results and updates the array of filtered items based on text in the search box.
    * @param {*} text search term(s) - string
    */
   const filterResults = (text) => {
@@ -441,9 +446,9 @@ function App() {
                     <div className = "stat-column-container">
                       <div className = "stat-column">
 
-                        {/*Below, generate stat columns. Could ideally be done in a loop.*/}
+                        {/*Below, generate two stat columns of weapon details. Could ideally be done in a loop.*/}
                         
-                        {createStatRow(currentWeapon.id,`id`/*Don't hide id if === 0*/)}
+                        {createStatRow(currentWeapon.id,`id`)}
 
                         <hr/>
                         
