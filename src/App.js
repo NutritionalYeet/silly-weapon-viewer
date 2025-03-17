@@ -1,3 +1,7 @@
+/**
+ * Audrey Victor
+ */
+
 import logo from './inv_weapon_knife_vector.svg';
 import { ReactComponent as MonetarySymbol } from './money_symbol.svg';
 import './App.css';
@@ -21,14 +25,19 @@ const title = `Armory`;
   {
     try
     {
+
       const response = await fetch(url);
   
       if (!response.ok)
-        {
-          throw new Error("Nooo! Failed to fetch weapons! :(");
-        }
+      {
+        throw new Error("Nooo! Failed to fetch weapons! :(");
+      }
   
       const data = await response.json();
+
+      if (data.error) {
+        throw new Error("Error reading data: "+data.error);
+      }
   
       const weapons = Array.isArray(data.weapons) 
         ? data.weapons.map(weapon => 
@@ -43,7 +52,7 @@ const title = `Armory`;
     }
     catch(error)
     {
-      console.error("Error fetching weapons: "+error);
+      // console.log("Error fetching weapons: "+error);
   
       //Generate placeholder weapons; remove this line to suppress this behavior.
       return createPlaceholderWeapons() || []; 
@@ -143,7 +152,7 @@ class Item
     };
 
   /**
-   * @returns a string for the color of this item.
+   * @returns a string for the color of this item, assuming it has an enum called 'quality'.
    */
    getItemColor = () => 
     {
@@ -214,7 +223,6 @@ class Weapon extends Item
     this.speed = speed;
     this.charge = charge;
     this.gouge = gouge;
-
   }
 
   /**
@@ -258,7 +266,7 @@ const createPlaceholderWeapons = () =>
 
     for (let i = 0; i < 15; i++)
       {
-        arr.push(new Weapon(0, `PlaceholderWeapon ${i}`))
+        arr.push(new Weapon(i, `PlaceholderWeapon ${i}`,``,`This is a placeholder weapon for demonstration purposes.`))
       }
 
     return arr;
@@ -331,15 +339,24 @@ function App() {
 
   const [currentWeapon, setCurrentWeapon] = useState(null);
 
+
   //Fetch items; set items and filtered items
   useEffect(()=>{
-    const getItems = async () =>
+    try{
+      const getItems = async () =>
+      {
+        
+          const fetchedItems = await ItemManager.fetchWeapons(dbUrl);
+          setItems(Array.isArray(fetchedItems) ? fetchedItems : []);
+          setFilteredItems(Array.isArray(fetchedItems) ? fetchedItems : []);
+      }
+    
+      getItems();
+    }
+    catch(error)
     {
-      const fetchedItems = await ItemManager.fetchWeapons(dbUrl);
-      setItems(Array.isArray(fetchedItems) ? fetchedItems : []);
-      setFilteredItems(Array.isArray(fetchedItems) ? fetchedItems : []);
-    };
-    getItems();
+      console.log("Failed to load items. Please try again later.");
+    }
   },[]);
 
   /**
@@ -449,6 +466,8 @@ function App() {
                       </div>
                     </div>
 
+                    
+
 
                     {currentWeapon.description && <i><p className="item-description">"{currentWeapon.description}"</p></i>}
 
@@ -462,7 +481,12 @@ function App() {
                   </div>
                     : <img src={logo} className="App-logo" alt="logo" />
                 }
+
+                
               </div>
+
+
+              
               
 
           </div>
