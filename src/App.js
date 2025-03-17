@@ -414,7 +414,7 @@ function App() {
                             style={{ color: item.getItemColor() /*Assuming items have a "quality" enum, gets a color of the item name */}} 
                             onClick={() => setCurrentWeapon(item)/* */}>
                             <div className = "list-item" >
-                              <img className = "list-item-icon border-window-subtle"  src={item.getIconPath()} alt="Weapon icon" ></img>
+                              <img className = "list-item-icon border-window-subtle"  src={item.getIconPath()} alt="Weapon icon" onError={(e) => e.target.src = '/assets/icons/question_mark_v4.jpg'}></img>
                               <p className = "list-item-name" >{item.name}</p>
                             </div>
                             
@@ -438,7 +438,7 @@ function App() {
                   <div className ="weapon-info-grid">
 
                     <div className="item-header">
-                    <img className="border-window item-image" src={currentWeapon.getIconPath()} alt="Weapon icon" />
+                    <img className="border-window item-image" src={currentWeapon.getIconPath()} alt="Weapon icon" onError={(e) => e.target.src = '/assets/icons/question_mark_v4.jpg'}/>
                         <h2 className="item-title" style={{ color: Item.getItemColor(currentWeapon.quality) }}>
                           {currentWeapon.name}
                         </h2>
