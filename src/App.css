@@ -265,6 +265,10 @@ h1
 
   0px 1px 10px 1px #2c7c974f,
   -10px 5px 70px 0px rgba(0, 0, 0, 0.143) inset;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 }
 
 li button {
