@@ -4,7 +4,7 @@ A simple React app that allows you to view items from a local server.
 
 ## To use
 
-CD to project directory > npm start
+CD to project directory > npm start (might need to use npm install first)
 
 The app generates some placeholder weapons to demonstrate the visual components. It works best when run in Chrome.
 
