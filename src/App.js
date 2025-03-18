@@ -266,7 +266,7 @@ const createPlaceholderWeapons = () =>
 
     for (let i = 0; i < 15; i++)
       {
-        arr.push(new Weapon(i, `PlaceholderWeapon ${i}`,``,`This is a placeholder weapon for demonstration purposes.`))
+        arr.push(new Weapon(i, `Placeholder Weapon ${i}`,``,`This is a placeholder weapon for demonstration purposes.`))
       }
 
     return arr;
