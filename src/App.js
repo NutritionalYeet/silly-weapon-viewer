@@ -258,11 +258,7 @@ const createPlaceholderWeapons = () => {
   return arr;
 }
 
-/**
- * Fetches weapons from a database.
- * @param {*} url 
- * @returns an array of Weapons
- */
+
 
 /**
  * Gets the color a stat should be based on it is positive, zero, or negative.
@@ -395,7 +391,7 @@ function App() {
                       filteredItems.map((item) => (
                         <li className="" key={item.id}><button className="border-window-subtle"
                           style={{ color: item.getItemColor() /*Assuming items have a "quality" enum, gets a color of the item name */ }}
-                          onClick={() => setCurrentWeapon(item)/* */}>
+                          onClick={() => setCurrentWeapon(item)}>
                           <div className="list-item" >
                             <img className="list-item-icon border-window-subtle" src={item.getIconPath()} alt="Weapon icon" onError={(e) => e.target.src = '/assets/icons/question_mark_v4.jpg'}></img>
                             <p className="list-item-name" >{item.name}</p>
@@ -430,7 +426,7 @@ function App() {
                       <div className="stat-column-container">
                         <div className="stat-column">
 
-                          {/*Below, generate two stat columns of weapon details. Could ideally be done in a loop.*/}
+                          {/*Below, generate two stat columns of weapon details.*/}
 
                           {createStatRow(currentWeapon.id, `id`)}
 
